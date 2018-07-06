@@ -5,40 +5,9 @@ using UnityEngine;
 
 namespace LevelManagement
 {
-	public class MainMenu : Menu
+	public class MainMenu : Menu<MainMenu>
 	{
-		// ═════════════════════════════════════════════════════════ PROPERTIES ════
-		// reference to this singleton's class
-		static MainMenu _instance;
-		public static MainMenu Instance { get { return _instance; } }
-
 		// ════════════════════════════════════════════════════════════ METHODS ════
-		/// <summary>
-		/// Awake is called when the script instance is being loaded.
-		/// </summary>
-		void Awake ()
-		{
-			if (_instance != null)
-			{
-				Destroy (gameObject);
-			}
-			else
-			{
-				_instance = this;
-			}
-		}
-
-		/// <summary>
-		/// This function is called when the MonoBehaviour will be destroyed.
-		/// </summary>
-		void OnDestroy ()
-		{
-			if (_instance == this)
-			{
-				_instance = null;
-			}
-		}
-
 		public void OnPlayPressed ()
 		{
 			if (GameManager.Instance != null)
