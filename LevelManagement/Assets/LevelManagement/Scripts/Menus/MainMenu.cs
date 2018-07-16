@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace LevelManagement
 {
+	// this class derives from a Generic Menu base class
 	public class MainMenu : Menu<MainMenu>
 	{
 		// ════════════════════════════════════════════════════════════ METHODS ════
@@ -12,8 +13,12 @@ namespace LevelManagement
 		{
 			if (GameManager.Instance != null)
 			{
-				GameManager.Instance.LoadNextLevel ();
+				LevelLoader.LoadNextLevel ();
 			}
+
+			// open the game menu (the one with the button that allows the player
+			// to pause the game)
+			GameMenu.Open ();
 		}
 
 		public void OnSettingsPressed ()
@@ -33,11 +38,7 @@ namespace LevelManagement
 			*/
 
 			// ┌ wilmer lin ───────────────────────────────────────────────────┐
-			if (MenuManager.Instance != null && SettingsMenu.Instance != null)
-			{
-				// open the settings menu
-				MenuManager.Instance.OpenMenu (SettingsMenu.Instance);
-			}
+			SettingsMenu.Open ();
 			// └───────────────────────────────────────────────────────────────┘
 		}
 
@@ -58,11 +59,7 @@ namespace LevelManagement
 			*/
 
 			// ┌ wilmer lin ───────────────────────────────────────────────────┐
-			if (MenuManager.Instance != null && CreditsMenu.Instance != null)
-			{
-				// open the settings menu
-				MenuManager.Instance.OpenMenu (CreditsMenu.Instance);
-			}
+			CreditsMenu.Open ();
 			// └───────────────────────────────────────────────────────────────┘
 		}
 

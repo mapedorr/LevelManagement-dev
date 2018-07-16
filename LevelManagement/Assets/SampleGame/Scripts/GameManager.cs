@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LevelManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -25,14 +26,6 @@ namespace SampleGame
 
         // reference to player
         private Objective _objective;
-
-        [SerializeField]
-        // name of the next level
-        private string _nextLevelName;
-
-        [SerializeField]
-        // build index of the next level
-        private int _nextLevelIndex;
 
         // ════════════════════════════════════════════════════════ METHODS ════
         // initialize references
@@ -95,60 +88,7 @@ namespace SampleGame
             {
                 _isGameOver = true;
                 _goalEffect.PlayEffect ();
-                LoadNextLevel ();
-            }
-        }
-
-        public void ReloadLevel ()
-        {
-            LoadLevel (SceneManager.GetActiveScene ().buildIndex);
-        }
-
-        public void LoadNextLevel ()
-        {
-            /*
-            // ┌ mine ─────────────────────────────────────────────────────────┐
-            int nextSceneIndex = SceneManager.GetActiveScene ().buildIndex + 1;
-            if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
-            {
-                nextSceneIndex = 0;
-            }
-            LoadLevel (nextSceneIndex);
-            // └───────────────────────────────────────────────────────────────┘
-            */
-
-            // ┌ wilmer lin ───────────────────────────────────────────────────┐
-            int nextSceneIndex = (SceneManager.GetActiveScene ().buildIndex + 1) %
-                SceneManager.sceneCountInBuildSettings;
-            LoadLevel (nextSceneIndex);
-            // └───────────────────────────────────────────────────────────────┘
-        }
-
-        private void LoadLevel (string levelName)
-        {
-            if (Application.CanStreamedLevelBeLoaded (levelName))
-            {
-                SceneManager.LoadScene (levelName);
-            }
-            else
-            {
-                Debug.LogWarning ("GameManager.LoadLevel(string) Error: invalid scene name");
-            }
-        }
-
-        /// <summary>
-        /// Loads a scene by its build index
-        /// </summary>
-        /// <param name="levelIndex"></param>
-        private void LoadLevel (int levelIndex)
-        {
-            if (levelIndex >= 0 && levelIndex < SceneManager.sceneCountInBuildSettings)
-            {
-                SceneManager.LoadScene (levelIndex);
-            }
-            else
-            {
-                Debug.LogWarning ("GameManager.LoadLevel(int) Error: invalid scene index");
+                WinMenu.Open ();
             }
         }
 

@@ -37,6 +37,17 @@ namespace LevelManagement
 		{
 			_instance = null;
 		}
+
+		/// <summary>
+		/// Opens the menu itself
+		/// </summary>
+		public static void Open ()
+		{
+			if (MenuManager.Instance != null && Instance != null)
+			{
+				MenuManager.Instance.OpenMenu (Instance);
+			}
+		}
 	}
 
 	[RequireComponent (typeof (Canvas))]

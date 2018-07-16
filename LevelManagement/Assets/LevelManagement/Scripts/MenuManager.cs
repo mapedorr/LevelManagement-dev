@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// namespace that helps us to get Type information at runtime
+using System.Reflection;
 
 namespace LevelManagement
 {
 	public class MenuManager : MonoBehaviour
 	{
 		// ════════════════════════════════════════════════════════════ PUBLICS ════
-		public MainMenu mainMenuPrefab;
-		public SettingsMenu settingsMenuPrefab;
-		public CreditsMenu creditsMenuPrefab;
+		[SerializeField]
+		MainMenu _mainMenuPrefab;
+		[SerializeField]
+		SettingsMenu _settingsMenuPrefab;
+		[SerializeField]
+		CreditsMenu _creditsMenuPrefab;
+		[SerializeField]
+		GameMenu _gameMenuPrefab;
+		[SerializeField]
+		PauseMenu _pauseMenuPrefab;
+		[SerializeField]
+		WinMenu _winMenuPrefab;
 
 		/*
 		// ═════════════════════════════════════════════════════════ PROPERTIES ════
@@ -42,6 +53,8 @@ namespace LevelManagement
 			{
 				_instance = this;
 				InitializeMenus ();
+				// make this manager to persist between scenes
+				DontDestroyOnLoad (this.gameObject);
 			}
 		}
 
@@ -70,19 +83,42 @@ namespace LevelManagement
 				_menusParent = menuContainer.transform;
 			}
 
+			// make the container of all the menus persist between scenes
+			DontDestroyOnLoad (_menusParent.gameObject);
+
+			/* 
 			// this array will be used to instantiate all the menus for the game inside
 			// a loop
-			Menu[] menuPrefabs = { mainMenuPrefab, settingsMenuPrefab, creditsMenuPrefab };
+			Menu[] menuPrefabs = {
+				_mainMenuPrefab,
+				_settingsMenuPrefab,
+				_creditsMenuPrefab,
+				_gameMenuPrefab,
+				_pauseMenuPrefab,
+				_winMenuPrefab
+			};
+			*/
 
-			foreach (Menu prefab in menuPrefabs)
+			// store a reference to the MenuManager type
+			System.Type myType = this.GetType ();
+			// set the enums that will be used to search through the reflection
+			BindingFlags myFlags = BindingFlags.Instance |
+				BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+			// get the fields that match the conditions we're looking for
+			FieldInfo[] fields = myType.GetFields (myFlags);
+
+			foreach (FieldInfo field in fields)
 			{
+				// ???
+				Menu prefab = field.GetValue (this) as Menu;
+
 				// create an instance of the menu if it was defined in the Inspector
 				if (prefab != null)
 				{
 					Menu menuInstance = Instantiate (prefab, _menusParent);
 
 					// check if the current instantiated prefab is the MainMenu
-					if (prefab != mainMenuPrefab)
+					if (prefab != _mainMenuPrefab)
 					{
 						// by default, only the main menu should be active
 						menuInstance.gameObject.SetActive (false);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -216,12 +216,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 762489539}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1946910759}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &762489541
 MonoBehaviour:
@@ -234,11 +234,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad1b3716a21a694cb2747859b779306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPrefab: {fileID: 114648792737345988, guid: 9ce2a499faf9c2446878dd73d90fa582,
+  _mainMenuPrefab: {fileID: 114648792737345988, guid: 9ce2a499faf9c2446878dd73d90fa582,
     type: 2}
-  settingsMenuPrefab: {fileID: 114854504546981120, guid: f86f8d94031f47d41a96927c985549d9,
+  _settingsMenuPrefab: {fileID: 114854504546981120, guid: f86f8d94031f47d41a96927c985549d9,
     type: 2}
-  creditsMenuPrefab: {fileID: 114519640471357252, guid: 99966a9b227ba2549ae2eeda2089da09,
+  _creditsMenuPrefab: {fileID: 114519640471357252, guid: 99966a9b227ba2549ae2eeda2089da09,
+    type: 2}
+  _gameMenuPrefab: {fileID: 114623913162461824, guid: ad93a77761f5f534394b3ff8efff2e1b,
+    type: 2}
+  _pauseMenuPrefab: {fileID: 114164826814128288, guid: 7d26661e7b170d549afb2bdd4f6cb19a,
+    type: 2}
+  _winMenuPrefab: {fileID: 114644992413218490, guid: 1470400dfb703024c8bd710cad3d3224,
     type: 2}
 --- !u!1 &797505451
 GameObject:
@@ -280,8 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ac7334c0934ef4a48795858576377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextLevelName: 
-  _nextLevelIndex: 0
 --- !u!1 &1346594381
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +439,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 797505452}
-  - {fileID: 762489540}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
