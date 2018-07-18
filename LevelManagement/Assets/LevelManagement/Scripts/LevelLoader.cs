@@ -17,7 +17,7 @@ namespace LevelManagement
 		private int _nextLevelIndex;
 
 		// the index of the main menu in build settings
-		private static int _mainMenuIndex = 0;
+		private static int _mainMenuIndex = 1;
 
 		// ════════════════════════════════════════════════════════ METHODS ════
 		public static void ReloadLevel ()
@@ -41,6 +41,7 @@ namespace LevelManagement
 			// ┌ wilmer lin ───────────────────────────────────────────────────┐
 			int nextSceneIndex = (SceneManager.GetActiveScene ().buildIndex + 1) %
 				SceneManager.sceneCountInBuildSettings;
+			nextSceneIndex = Mathf.Clamp (nextSceneIndex, _mainMenuIndex, nextSceneIndex);
 			LoadLevel (nextSceneIndex);
 			// └───────────────────────────────────────────────────────────────┘
 		}
@@ -80,7 +81,7 @@ namespace LevelManagement
 			}
 		}
 
-		public static void LoadMainLevelMenu ()
+		public static void LoadMainMenuLevel ()
 		{
 			LoadLevel (_mainMenuIndex);
 		}

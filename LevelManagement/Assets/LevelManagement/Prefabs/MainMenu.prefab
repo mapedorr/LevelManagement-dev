@@ -804,6 +804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e29bb7233a24647a83155acc1e3dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startTransitionPrefab: {fileID: 114828013672173374, guid: 824b1ec9022021946a453ea6f89d376c,
+    type: 2}
+  _playDelay: 0.5
 --- !u!114 &114657491773489032
 MonoBehaviour:
   m_ObjectHideFlags: 1

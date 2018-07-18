@@ -8,13 +8,36 @@ namespace LevelManagement
 	// this class derives from a Generic Menu base class
 	public class MainMenu : Menu<MainMenu>
 	{
+		// ═══════════════════════════════════════════════════════════ PRIVATES ════
+		[SerializeField]
+		TransitionFader _startTransitionPrefab;
+
+		[SerializeField]
+		float _playDelay = 0.5f;
+
 		// ════════════════════════════════════════════════════════════ METHODS ════
 		public void OnPlayPressed ()
 		{
+			StartCoroutine (OnPlayPressedRoutine ());
+		}
+
+		IEnumerator OnPlayPressedRoutine ()
+		{
+			// start the transition between scenes
+			if (_startTransitionPrefab != null)
+			{
+				TransitionFader.CreateAndPlayTransition (_startTransitionPrefab);
+			}
+
+			// load the first level
 			if (GameManager.Instance != null)
 			{
 				LevelLoader.LoadNextLevel ();
 			}
+
+			// wait a couple of seconds before hiding this menu and openning the game
+			// menu
+			yield return new WaitForSeconds (_playDelay);
 
 			// open the game menu (the one with the button that allows the player
 			// to pause the game)

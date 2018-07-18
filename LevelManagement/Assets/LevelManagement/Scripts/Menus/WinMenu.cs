@@ -22,7 +22,7 @@ namespace LevelManagement
 
 		public void OnMainMenuPressed ()
 		{
-			LevelLoader.LoadMainLevelMenu ();
+			LevelLoader.LoadMainMenuLevel ();
 			MainMenu.Open ();
 		}
 	}

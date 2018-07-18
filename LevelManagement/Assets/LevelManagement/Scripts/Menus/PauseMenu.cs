@@ -9,10 +9,6 @@ namespace LevelManagement
 	// this class derives from a Generic Menu base class
 	public class PauseMenu : Menu<PauseMenu>
 	{
-		// ═══════════════════════════════════════════════════════════ PRIVATES ════
-		[SerializeField]
-		int _mainMenuIndex = 0;
-
 		// ════════════════════════════════════════════════════════════ METHODS ════
 		public void OnResumePressed ()
 		{
@@ -33,7 +29,7 @@ namespace LevelManagement
 		public void OnMainMenuPressed ()
 		{
 			Time.timeScale = 1;
-			SceneManager.LoadScene (_mainMenuIndex);
+			LevelLoader.LoadMainMenuLevel ();
 
 			MainMenu.Open ();
 		}

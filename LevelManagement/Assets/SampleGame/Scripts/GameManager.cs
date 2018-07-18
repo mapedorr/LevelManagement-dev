@@ -10,7 +10,7 @@ namespace SampleGame
     public class GameManager : MonoBehaviour
     {
         // ═════════════════════════════════════════════════════ PROPERTIES ════
-        private bool _isGameOver;
+        bool _isGameOver;
         public bool IsGameOver { get { return _isGameOver; } }
 
         // reference to this singleton's class
@@ -19,13 +19,16 @@ namespace SampleGame
 
         // ═══════════════════════════════════════════════════════ PRIVATES ════
         // reference to player
-        private ThirdPersonCharacter _player;
+        ThirdPersonCharacter _player;
 
         // reference to goal effect
-        private GoalEffect _goalEffect;
+        GoalEffect _goalEffect;
 
         // reference to player
-        private Objective _objective;
+        Objective _objective;
+
+        [SerializeField]
+        TransitionFader _endLevelTransitionPrefab;
 
         // ════════════════════════════════════════════════════════ METHODS ════
         // initialize references
@@ -88,12 +91,24 @@ namespace SampleGame
             {
                 _isGameOver = true;
                 _goalEffect.PlayEffect ();
-                WinMenu.Open ();
+
+                // open the end level menu
+                StartCoroutine (EndLevelTransitionRoutine ());
             }
         }
 
+        IEnumerator EndLevelTransitionRoutine ()
+        {
+            TransitionFader.CreateAndPlayTransition (_endLevelTransitionPrefab);
+            float fadeDelay = (_endLevelTransitionPrefab != null) ?
+                _endLevelTransitionPrefab.Delay + _endLevelTransitionPrefab.FadeOnDuration :
+                0f;
+            yield return new WaitForSeconds (fadeDelay);
+            WinMenu.Open ();
+        }
+
         // check for the end game condition on each frame
-        private void Update ()
+        void Update ()
         {
             if (_objective != null && _objective.IsComplete)
             {
