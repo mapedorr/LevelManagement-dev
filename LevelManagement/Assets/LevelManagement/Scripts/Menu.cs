@@ -18,7 +18,7 @@ namespace LevelManagement
 		/// <summary>
 		/// Awake is called when the script instance is being loaded.
 		/// </summary>
-		void Awake ()
+		public virtual void Awake ()
 		{
 			if (_instance != null)
 			{
