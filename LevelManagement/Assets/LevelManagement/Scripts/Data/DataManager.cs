@@ -6,7 +6,11 @@ namespace LevelManagement.Data
 {
 	public class DataManager : MonoBehaviour
 	{
-		// ═══════════════════════════════════════════════════════════ PROPERTIES ════
+		// ═══════════════════════════════════════════════════════════ PRIVATES ════
+		SaveData _saveData;
+		JsonSaver _jsonSaver;
+
+		// ═════════════════════════════════════════════════════════ PROPERTIES ════
 		public float MasterVolume
 		{
 			get { return _saveData.masterVolume; }
@@ -19,12 +23,9 @@ namespace LevelManagement.Data
 		}
 		public float MusicVolume
 		{
-			get { return _saveData.masterVolume; }
-			set { _saveData.masterVolume = value; }
+			get { return _saveData.musicVolume; }
+			set { _saveData.musicVolume = value; }
 		}
-
-		// ═══════════════════════════════════════════════════════════ PRIVATES ════
-		SaveData _saveData;
 
 		// ════════════════════════════════════════════════════════════ METHODS ════
 		/// <summary>
@@ -32,7 +33,29 @@ namespace LevelManagement.Data
 		/// </summary>
 		void Awake ()
 		{
+			GetReferences ();
+		}
+
+		public void GetReferences ()
+		{
 			_saveData = new SaveData ();
+			_jsonSaver = new JsonSaver ();
+		}
+
+		public void Save ()
+		{
+			if (_jsonSaver != null)
+			{
+				_jsonSaver.Save (_saveData);
+			}
+		}
+
+		public void Load ()
+		{
+			if (_jsonSaver != null)
+			{
+				_jsonSaver.Load (_saveData);
+			}
 		}
 	}
 }

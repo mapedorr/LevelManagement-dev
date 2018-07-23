@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace LevelManagement.Data
 {
+	[Serializable]
 	public class SaveData
 	{
 		// ════════════════════════════════════════════════════════════ PUBLICS ════
@@ -12,7 +14,7 @@ namespace LevelManagement.Data
 		public float musicVolume;
 
 		// ═══════════════════════════════════════════════════════════ PRIVATES ════
-		readonly string _defaultPlayerName = "Player";
+		readonly string _defaultPlayerName = "Carenalga";
 
 		// ════════════════════════════════════════════════════════════ METHODS ════
 		public SaveData ()

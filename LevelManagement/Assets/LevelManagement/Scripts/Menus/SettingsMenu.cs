@@ -23,7 +23,8 @@ namespace LevelManagement
 		public override void Awake ()
 		{
 			base.Awake ();
-			_dataManager = GameObject.FindObjectOfType<DataManager> ();
+			_dataManager = Object.FindObjectOfType<DataManager> ();
+			_dataManager.GetReferences ();
 			LoadPlayerPreferences ();
 		}
 
@@ -61,6 +62,11 @@ namespace LevelManagement
 		{
 			base.OnBackPressed ();
 			/* PlayerPrefs.Save (); */
+
+			if (_dataManager != null)
+			{
+				_dataManager.Save ();
+			}
 		}
 
 		public void LoadPlayerPreferences ()
@@ -68,6 +74,11 @@ namespace LevelManagement
 			/* _masterVolumeSlider.value = PlayerPrefs.GetFloat ("MasterVolume");
 			_sfxVolumeSlider.value = PlayerPrefs.GetFloat ("SFXVolume");
 			_musicVolumeSlider.value = PlayerPrefs.GetFloat ("MusicVolume"); */
+
+			if (_dataManager != null)
+			{
+				_dataManager.Load ();
+			}
 
 			if (_dataManager == null || _masterVolumeSlider == null ||
 				_sfxVolumeSlider == null || _musicVolumeSlider == null)
