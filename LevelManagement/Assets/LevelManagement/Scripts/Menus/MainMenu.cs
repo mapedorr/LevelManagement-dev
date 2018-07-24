@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LevelManagement.Data;
 using SampleGame;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LevelManagement
 {
@@ -15,7 +17,38 @@ namespace LevelManagement
 		[SerializeField]
 		float _playDelay = 0.5f;
 
+		[SerializeField]
+		InputField _playerNameInputField;
+
+		DataManager _dataManager;
+
 		// ════════════════════════════════════════════════════════════ METHODS ════
+		public override void Awake ()
+		{
+			base.Awake ();
+
+			_dataManager = GameObject.FindObjectOfType<DataManager> ();
+			_dataManager.GetReferences ();
+		}
+
+		/// <summary>
+		/// Start is called on the frame when a script is enabled just before
+		/// any of the Update methods is called the first time.
+		/// </summary>
+		void Start ()
+		{
+			LoadData ();
+		}
+
+		void LoadData ()
+		{
+			if (_dataManager != null && _playerNameInputField != null)
+			{
+				_dataManager.Load ();
+				_playerNameInputField.text = _dataManager.PlayerName;
+			}
+		}
+
 		public void OnPlayPressed ()
 		{
 			StartCoroutine (OnPlayPressedRoutine ());
@@ -89,6 +122,22 @@ namespace LevelManagement
 		public override void OnBackPressed ()
 		{
 			Application.Quit ();
+		}
+
+		public void OnPlayerNameChanged (string name)
+		{
+			if (_dataManager != null)
+			{
+				_dataManager.PlayerName = name;
+			}
+		}
+
+		public void OnPlayerNameEndEdit ()
+		{
+			if (_dataManager != null)
+			{
+				_dataManager.Save ();
+			}
 		}
 	}
 }

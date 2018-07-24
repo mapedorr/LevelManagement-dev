@@ -17,7 +17,6 @@ namespace LevelManagement.Data
 		/// <returns>A string with the full path to the file.</returns>
 		public static string GetSaveFileNamePath ()
 		{
-			Debug.Log ("File path: " + Application.persistentDataPath);
 			return Application.persistentDataPath + "/" + _fileName;
 		}
 		/// <summary>

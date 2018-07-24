@@ -11,6 +11,11 @@ namespace LevelManagement.Data
 		JsonSaver _jsonSaver;
 
 		// ═════════════════════════════════════════════════════════ PROPERTIES ════
+		public string PlayerName
+		{
+			get { return _saveData.playerName; }
+			set { _saveData.playerName = value; }
+		}
 		public float MasterVolume
 		{
 			get { return _saveData.masterVolume; }
