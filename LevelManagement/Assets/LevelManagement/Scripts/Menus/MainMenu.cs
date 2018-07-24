@@ -23,6 +23,9 @@ namespace LevelManagement
 		DataManager _dataManager;
 
 		// ════════════════════════════════════════════════════════════ METHODS ════
+		/// <summary>
+		/// Awake is called when the script instance is being loaded.
+		/// </summary>
 		public override void Awake ()
 		{
 			base.Awake ();
@@ -40,6 +43,9 @@ namespace LevelManagement
 			LoadData ();
 		}
 
+		/// <summary>
+		/// Loads the player name saved on disc.
+		/// </summary>
 		void LoadData ()
 		{
 			if (_dataManager != null && _playerNameInputField != null)
@@ -49,11 +55,19 @@ namespace LevelManagement
 			}
 		}
 
+		/// <summary>
+		/// Called when the player clicks on Play.
+		/// </summary>
 		public void OnPlayPressed ()
 		{
 			StartCoroutine (OnPlayPressedRoutine ());
 		}
 
+		/// <summary>
+		/// Routine that starts the transition between the Main menu and the game loading
+		/// the first level on the scenes in build.
+		/// </summary>
+		/// <returns>An IEnumerator ready to be used as a Coroutine.</returns>
 		IEnumerator OnPlayPressedRoutine ()
 		{
 			// start the transition between scenes
@@ -77,6 +91,9 @@ namespace LevelManagement
 			GameMenu.Open ();
 		}
 
+		/// <summary>
+		/// Called when the player clicks on the Settings option.
+		/// </summary>
 		public void OnSettingsPressed ()
 		{
 			/*
@@ -98,6 +115,9 @@ namespace LevelManagement
 			// └───────────────────────────────────────────────────────────────┘
 		}
 
+		/// <summary>
+		/// Called when the player clicks on the Credits option.
+		/// </summary>
 		public void OnCreditsPressed ()
 		{
 			/*
@@ -119,11 +139,17 @@ namespace LevelManagement
 			// └───────────────────────────────────────────────────────────────┘
 		}
 
+		/// <summary>
+		/// Called when the player clicks on the Quit option.
+		/// </summary>
 		public override void OnBackPressed ()
 		{
 			Application.Quit ();
 		}
 
+		/// <summary>
+		/// Updates the name to store every time the player changes it on the PlayerNameInputField.
+		/// </summary>
 		public void OnPlayerNameChanged (string name)
 		{
 			if (_dataManager != null)
@@ -132,6 +158,9 @@ namespace LevelManagement
 			}
 		}
 
+		/// <summary>
+		/// Stores the name of the player after it finishes its edition.
+		/// </summary>
 		public void OnPlayerNameEndEdit ()
 		{
 			if (_dataManager != null)

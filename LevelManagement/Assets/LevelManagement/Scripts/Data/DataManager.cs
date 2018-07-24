@@ -41,12 +41,18 @@ namespace LevelManagement.Data
 			GetReferences ();
 		}
 
+		/// <summary>
+		/// Instantiates SaveData and JsonSaver classes.
+		/// </summary>
 		public void GetReferences ()
 		{
 			_saveData = new SaveData ();
 			_jsonSaver = new JsonSaver ();
 		}
 
+		/// <summary>
+		/// Save the data in the object SaveData to disc.
+		/// </summary>
 		public void Save ()
 		{
 			if (_jsonSaver != null)
@@ -55,6 +61,9 @@ namespace LevelManagement.Data
 			}
 		}
 
+		/// <summary>
+		/// Loads the data on disc to the object SaveData.
+		/// </summary>
 		public void Load ()
 		{
 			if (_jsonSaver != null)

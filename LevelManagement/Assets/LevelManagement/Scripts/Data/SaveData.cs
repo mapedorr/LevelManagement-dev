@@ -12,6 +12,7 @@ namespace LevelManagement.Data
 		public float masterVolume;
 		public float sfxVolume;
 		public float musicVolume;
+		public string hashValue;
 
 		// ═══════════════════════════════════════════════════════════ PRIVATES ════
 		readonly string _defaultPlayerName = "Carenalga";
@@ -23,6 +24,7 @@ namespace LevelManagement.Data
 			masterVolume = 0f;
 			sfxVolume = 0f;
 			musicVolume = 0f;
+			hashValue = String.Empty;
 		}
 	}
 
